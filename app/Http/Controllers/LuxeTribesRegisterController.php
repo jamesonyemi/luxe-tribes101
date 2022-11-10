@@ -20,13 +20,13 @@ class LuxeTribesRegisterController extends Controller
             'email' => 'required|unique:users|max:255| email:rfc,dns',
             'user_name' => 'alpha_num | required ',
             'password' => Password::min(6)->mixedCase(),
-            
+
         ]);
 
         DB::table('users')->insertGetId([
-            'name' => $request->email,
+            'name' => $request->user_name,
             'email' => $request->email,
-            'password' => $request->password,
+            'password' => password_hash($request->password, PASSWORD_ARGON2I ),
         ]);
 
        return DB::table('users')->get();

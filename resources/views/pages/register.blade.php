@@ -83,12 +83,21 @@
                   <i class="fa fa-search"></i
                 ></a>
               </li>
-              <li class="nav-item mr-2 ">
-                <a class="btn btn-outline-primary " href="{{ url('pages.') }}"
-                  ><i class="far fa-user"> </i>
-                  Log in
-                </a>
-              </li>
+              @guest
+                <li class="nav-item mr-2 ">
+                    <a class="btn btn-outline-primary " href="{{ route('user.index') }}"><i class="far fa-user">
+                        </i>
+                        Log in
+                    </a>
+                </li>
+                @else
+                <li class="nav-item mr-2 ">
+                    <a class="btn btn-outline-primary " href="{{ route('logout') }}"><i class="far fa-user">
+                        </i>
+                        Log out
+                    </a>
+                </li>
+            @endguest
             </ul>
           </div>
         </nav>
@@ -109,6 +118,7 @@
                     @csrf
                   <div class="media mb-2">
                     <img
+                      id="image-preview"
                       src="{{ asset('luxetribe-assets/images/icons/avatar.svg') }}"
                       class="mr-3 thumbnail"
                       alt="Profile photo"
@@ -125,6 +135,8 @@
                           name="photo"
                           id="photo"
                           hidden
+                          onchange="document.getElementById('image-preview').src = window.URL.createObjectURL(this.files[0])"
+
                         />
                       </label>
                     </div>
@@ -560,7 +572,7 @@
                   </div>
 
                   <p class="text-muted">
-                    Already have an account? <a href="login.html">Log in</a>
+                    Already have an account? <a href="{{ route('user.index') }}">Log in</a>
                   </p>
                 </form>
               </div>
