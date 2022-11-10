@@ -149,7 +149,7 @@
                           type="text"
                           class="form-control @error('name') is-invalid @enderror  "
                           id="name"
-                          name="name"
+                          name="full_name"
                           placeholder="Full name"
                           required
                         />
@@ -166,7 +166,7 @@
                           type="text"
                           class="form-control @error('user_name') is-invalid @enderror "
                           id="user-name"
-                          name="user-name"
+                          name="user_name"
                           pattern="[A-Za-z0-9]+"
                           title="username can only allow numbers and alphabets!"
                           data-toggle="tooltip"

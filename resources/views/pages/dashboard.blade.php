@@ -62,7 +62,21 @@
               <a href="#" class="btn search-btn py-2 mb-2">
                 <i class="fa fa-search"></i></a>
             </li>
-
+            @guest
+                <li class="nav-item mr-2 ">
+                    <a class="btn btn-outline-primary " href="{{ route('user.index') }}"><i class="far fa-user">
+                        </i>
+                        Log in
+                    </a>
+                </li>
+                @else
+                <li class="nav-item mr-2 ">
+                    <a class="btn btn-outline-primary " href="{{ route('logout') }}"><i class="far fa-user">
+                        </i>
+                        Log out
+                    </a>
+                </li>
+            @endguest
           </ul>
         </div>
       </nav>
@@ -78,9 +92,6 @@
                     <img src="https://booking.luxetribes.com/images/icons/check.svg" alt="">
                   </div>
                 </div>
-
-
-
                 <h4 class="text-center">You are Logged in</h4>
 
                 <div class="text-muted text-center">

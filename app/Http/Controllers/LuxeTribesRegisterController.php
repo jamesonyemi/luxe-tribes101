@@ -24,11 +24,12 @@ class LuxeTribesRegisterController extends Controller
         ]);
 
         DB::table('users')->insertGetId([
-            'name' => $request->user_name,
+            'full_name' => $request->full_name,
+            'user_name' => $request->user_name,
             'email' => $request->email,
             'password' => password_hash($request->password, PASSWORD_ARGON2I ),
         ]);
 
-       return DB::table('users')->get();
+        return redirect()->route("user.create")->withSuccess('login successful');
     }
 }

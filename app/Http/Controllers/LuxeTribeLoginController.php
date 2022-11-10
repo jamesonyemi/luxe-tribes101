@@ -25,6 +25,7 @@ class LuxeTribeLoginController extends Controller
     public function create()
     {
         //
+        return view('pages.dashboard');
     }
 
     /**
@@ -44,12 +45,12 @@ class LuxeTribeLoginController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard')
+            return redirect()->route("user.create")
                         ->withSuccess('You Successfully Signed in');
         }
 
         return redirect()->route("user.index")->withSuccess('Login details are not valid');
-        
+
     }
 
     /**
